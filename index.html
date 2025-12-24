@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undangan Pernikahan Sarid & Shani</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f5f5f5, #eaeaea);
+      color: #333;
+      text-align: center;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+    h1 { font-size: 42px; margin-bottom: 10px; }
+    h2 { font-weight: normal; margin-top: 0; }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 30px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      margin-top: 30px;
+    }
+    .date { font-size: 20px; margin: 20px 0; font-weight: bold; }
+    .divider {
+      width: 60px; height: 3px; background: #c59d5f;
+      margin: 20px auto; border-radius: 10px;
+    }
+    footer { margin-top: 40px; font-size: 14px; color: #777; }
+    .btn {
+      display: inline-block; margin-top: 20px; padding: 12px 24px;
+      background: #c59d5f; color: #fff; text-decoration: none;
+      border-radius: 30px; font-weight: bold;
+    }
+    img { width: 100%; border-radius: 16px; margin-top: 20px; }
+    #countdown { font-size: 22px; margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<!-- MUSIK -->
+<audio id="music" autoplay loop>
+  <source src="musik.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // Auto play music (mobile support)
+  document.addEventListener('click', () => {
+    document.getElementById('music').play();
+  }, { once: true });
+
+  // Nama tamu dari URL
+  const params = new URLSearchParams(window.location.search);
+  const guest = params.get('to') || 'Tamu Undangan';
+
+  // Countdown
+  const weddingDate = new Date('April 20, 2025 10:00:00').getTime();
+  setInterval(() => {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+    if (distance < 0) return;
+    const d = Math.floor(distance / (1000*60*60*24));
+    const h = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const m = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const s = Math.floor((distance % (1000*60)) / 1000);
+    document.getElementById('countdown').innerHTML = `${d} Hari ${h} Jam ${m} Menit ${s} Detik`;
+  }, 1000);
+</script>
+
+<div class="container">
+  <h2>Kepada Yth</h2>
+  <h3 id="guest"></h3>
+
+  <h2>Undangan Pernikahan</h2>
+  <h1>Sarid & Shani</h1>
+  <div class="divider"></div>
+
+  <!-- FOTO PREWEDDING -->
+  <img src="prewedding.jpg" alt="Foto Prewedding Sarid & Shani" />
+
+  <div class="card">
+    <p>Dengan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami.</p>
+
+    <p class="date">Minggu, 20 April 2025</p>
+    <p>Pukul 10.00 WIB - Selesai</p>
+    <p>Gedung Serbaguna Bahagia<br />Jakarta</p>
+
+    <div id="countdown"></div>
+
+    <a class="btn" href="https://www.google.com/maps" target="_blank">Lihat Lokasi</a>
+  </div>
+
+  <footer>
+    <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
+    <p>— Sarid & Shani —</p>
+  </footer>
+</div>
+
+<script>
+  document.getElementById('guest').innerText = guest;
+</script>
+
+</body>
+</html>
