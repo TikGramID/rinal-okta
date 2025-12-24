@@ -125,4 +125,121 @@
     </button>
     <audio id="bgMusic" loop>
         <source src="musik.mp3" type="audio/mp3">
-        <source src="
+        <source src="https://ia800404.us.archive.org/30/items/CanonInD_201806/Canon%20in%20D.mp3" type="audio/mp3">
+    </audio>
+
+    <div id="cover">
+        <h3 style="color:white; letter-spacing: 2px; font-weight:300;">THE WEDDING OF</h3>
+        <h1 style="font-size: 4.5rem; margin: 10px 0;">Rinal & Okta</h1>
+        <p style="color: #ddd;">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+        <div id="nama-tamu" style="background: rgba(255,255,255,0.2); padding: 8px 25px; border-radius: 50px; margin: 15px 0; font-weight: bold; backdrop-filter: blur(5px);">
+            Tamu Undangan
+        </div>
+        <button class="btn-buka" onclick="bukaUndangan()">
+            <i class="fas fa-envelope-open"></i> Buka Undangan
+        </button>
+    </div>
+
+    <section class="hero">
+        <p data-aos="fade-up" style="letter-spacing: 3px; font-weight: 600;">WE ARE GETTING MARRIED</p>
+        <h1 data-aos="zoom-in" style="font-size: 5rem; margin: 10px 0;">Rinal & Okta</h1>
+        <p data-aos="fade-up" data-aos-delay="200" style="font-weight: bold; color: var(--primary);">MINGGU, 20 APRIL 2025</p>
+    </section>
+
+    <section id="mempelai">
+        <h2 data-aos="fade-up">Mempelai</h2>
+        <p data-aos="fade-up">Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan:</p>
+        
+        <div class="couple-wrapper">
+            <div class="couple-card" data-aos="fade-right">
+                <div class="photo-circle"><img src="rinal.jpg" alt="Rinal"></div>
+                <h3>Rinal</h3>
+                <p>Putra dari Bpk. Fulan & Ibu Fulana</p>
+            </div>
+            
+            <div style="align-self: center; font-size: 3rem; color: var(--primary);">&</div>
+
+            <div class="couple-card" data-aos="fade-left">
+                <div class="photo-circle"><img src="okta.jpg" alt="Okta"></div>
+                <h3>Okta</h3>
+                <p>Putri dari Bpk. Alan & Ibu Alana</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="event-section" id="acara">
+        <section>
+            <h2 data-aos="fade-down">Save The Date</h2>
+            <p data-aos="fade-up">Minggu, 20 April 2025</p>
+
+            <div class="date-box" data-aos="zoom-in">
+                <h3>Resepsi & Akad</h3>
+                <p style="margin: 10px 0; font-size: 1.2rem; color: white;">
+                    <i class="far fa-clock" style="color:var(--primary)"></i> 10.00 WIB - Selesai
+                </p>
+                <p>Gedung Serbaguna Bahagia, Jakarta</p>
+                <a href="https://www.google.com/maps" target="_blank" class="btn-map">
+                    <i class="fas fa-map-marker-alt"></i> Lihat Lokasi Google Maps
+                </a>
+            </div>
+
+            <div class="countdown" id="countdown" data-aos="fade-up">
+                <div class="time-box"><span id="days">00</span><small>Hari</small></div>
+                <div class="time-box"><span id="hours">00</span><small>Jam</small></div>
+                <div class="time-box"><span id="minutes">00</span><small>Menit</small></div>
+                <div class="time-box"><span id="seconds">00</span><small>Detik</small></div>
+            </div>
+        </section>
+    </div>
+
+    <section id="gallery">
+        <h2 data-aos="fade-up">Our Moments</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 20px;">
+            <img src="foto1.jpg" data-aos="zoom-in" alt="Foto 1">
+            <img src="foto2.jpg" data-aos="zoom-in" alt="Foto 2">
+            <img src="foto3.jpg" data-aos="zoom-in" alt="Foto 3">
+        </div>
+    </section>
+
+    <footer>
+        <h2 style="font-family:'Great Vibes'; color:#444; font-size:2rem;">Rinal & Okta</h2>
+        <p>Terima kasih atas doa dan restu Anda.</p>
+        <br>
+        <p>Created with ❤️ by SaridWeb</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // AMBIL NAMA TAMU
+        const urlParams = new URLSearchParams(window.location.search);
+        const guest = urlParams.get('to');
+        if (guest) { document.getElementById('nama-tamu').innerText = guest; }
+
+        // BUKA UNDANGAN & MUSIK
+        function bukaUndangan() {
+            document.getElementById('cover').classList.add('hidden');
+            const music = document.getElementById('bgMusic');
+            music.play().catch(error => console.log("Autoplay blocked"));
+        }
+
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            if (music.paused) music.play(); else music.pause();
+        }
+
+        // COUNTDOWN (Target: 20 April 2025)
+        const weddingDate = new Date("April 20, 2025 10:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            if (distance < 0) return;
+            document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
+        }, 1000);
+    </script>
+</body>
+</html>
